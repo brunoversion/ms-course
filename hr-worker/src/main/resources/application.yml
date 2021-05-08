@@ -1,6 +1,6 @@
 server:
   port:
-    8003
+    8001
 spring:
   application:
     name: hr-worker
