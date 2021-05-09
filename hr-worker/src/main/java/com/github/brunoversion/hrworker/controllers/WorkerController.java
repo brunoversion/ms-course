@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -29,6 +32,11 @@ import com.github.brunoversion.hrworker.repositories.WorkerRepository;
 @RequestMapping("workers")
 public class WorkerController {
 	
+	private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
+	
+	@Autowired
+	private Environment env;
+	
 	@Autowired
 	private WorkerRepository repository;
 
@@ -39,6 +47,9 @@ public class WorkerController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkerDTO> findById(@PathVariable Long id) {		
+		
+		logger.info("PORT = " + env.getProperty("local.server.port"));
+		
 		Optional<Worker> worker = repository.findById(id);
 		if (worker.isEmpty()) {
 			return ResponseEntity.notFound().build();
