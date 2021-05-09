@@ -17,4 +17,14 @@ zuul:
     payroll:
       service-id: hr-payroll
       path: /hr-payroll/**
-      
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds:  60000 # 1 min
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 20000
