@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ import com.github.brunoversion.hrworker.dtos.WorkerDTO;
 import com.github.brunoversion.hrworker.entities.Worker;
 import com.github.brunoversion.hrworker.repositories.WorkerRepository;
 
+@RefreshScope
 @RestController
 @RequestMapping("workers")
 public class WorkerController {
